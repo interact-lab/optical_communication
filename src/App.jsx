@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './layouts/Layout';
 
 // Placeholder Pages (Temporary)
@@ -58,7 +58,7 @@ function App() {
   const toggleTheme = () => setIsDark(!isDark);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout toggleTheme={toggleTheme} isDark={isDark} />}>
           <Route index element={<Home />} />
@@ -113,7 +113,7 @@ function App() {
           <Route path="faq" element={<Placeholder title="FAQ" />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
