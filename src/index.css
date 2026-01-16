@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* HEX values corresponding to HSL from image */
+  --color-primary: #D9F2EE;
+  --color-secondary: #0D2622;
+  --color-tertiary: #0A185C;
+  --color-accent: #185C0A;
+}
+
+.dark {
+  --color-primary: #0D2622;
+  --color-secondary: #D9F2EE;
+  --color-tertiary: #A3B1F5;
+  --color-accent: #B1F5A3;
+}
+
+@layer base {
+  body {
+    @apply font-sans overflow-x-hidden;
+    background-color: var(--color-primary) !important;
+    color: var(--color-secondary) !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-tertiary);
+  border-radius: 4px;
+}
+
+/* Transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
