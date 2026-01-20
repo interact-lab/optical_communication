@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import MathText from '../../../components/MathText';
-import { Sliders, Zap, Play, Pause, RotateCcw, SkipForward } from 'lucide-react';
+import { Sliders, Zap, Play, Pause, RotateCcw, SkipForward, ChevronDown } from 'lucide-react';
 
 const WhyStandingWaves = () => {
     // -------------------------------------------------------------------------
@@ -11,6 +12,7 @@ const WhyStandingWaves = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [animationSpeed, setAnimationSpeed] = useState(0.01); // New Speed State
     const [isResonant, setIsResonant] = useState(false);
+    const [showTheory, setShowTheory] = useState(false);
 
     // Canvas Refs
     const canvasRef = useRef(null);
@@ -193,12 +195,93 @@ const WhyStandingWaves = () => {
                         </span>
                     )}
                 </div>
-                <h1 className="text-5xl font-serif font-bold text-[var(--color-secondary)] mb-4">
-                    Why does standing wave exist inside a cavity?
-                </h1>
-                <p className="text-xl text-[var(--color-secondary)]/60 font-light max-w-2xl">
+                <div className="flex items-center gap-4 mb-4">
+                    <h1 className="text-5xl font-serif font-bold text-[var(--color-secondary)]">
+                        Why does standing wave exist inside a cavity?
+                    </h1>
+                    <button
+                        onClick={() => setShowTheory(!showTheory)}
+                        className="p-2 rounded-full hover:bg-secondary/10 transition-all text-secondary/40 hover:text-secondary mt-2"
+                        title="Toggle Theory"
+                    >
+                        <ChevronDown size={28} className={`transition-transform duration-300 ${showTheory ? 'rotate-180' : ''}`} />
+                    </button>
+                </div>
+                <p className="text-xl text-[var(--color-secondary)]/60 font-light max-w-2xl mb-8">
                     Watch how a single wave reflects and interferes with itself over time.
                 </p>
+
+                <AnimatePresence>
+                    {showTheory && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden mb-12"
+                        >
+                            <div className="p-8 bg-secondary/[0.04] rounded-3xl border border-secondary/10 space-y-6 text-[var(--color-secondary)]/80 leading-relaxed">
+                                <p>
+                                    In a laser cavity (e.g., Fabry–Pérot, ring, spherical), one looks for solutions of Maxwell’s equations that are invariant under propagation through the cavity—i.e., they reproduce their amplitude and phase after one round trip. These are <strong>eigenmodes</strong> of the passive cavity:
+                                </p>
+                                <ul className="list-disc pl-6 space-y-3">
+                                    <li>
+                                        <strong className="text-secondary">Longitudinal modes:</strong> satisfy the round-trip phase condition, <MathText inline>{String.raw`$\Delta \phi = 2 \pi m$`}</MathText>, where <MathText inline>{String.raw`$m$`}</MathText> is an integer.
+                                    </li>
+                                    <li>
+                                        <strong className="text-secondary">Transverse modes:</strong> represent specific spatial field distributions that are self-reproducing after a complete round trip.
+                                        <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-secondary/10 opacity-60">djvu.online +1</span>
+                                    </li>
+                                </ul>
+                                <p>
+                                    Mathematically these are solutions to the wave equation with appropriate boundary conditions rather than isolated “reflections.”
+                                </p>
+
+                                <div className="pt-4 border-t border-secondary/10">
+                                    <h3 className="text-xl font-serif font-bold text-secondary mb-4 text-[var(--color-tertiary)]">2.2. Threshold and Phase Conditions</h3>
+                                    <p className="mb-6 text-sm">Two fundamental conditions determine whether a mode will lase:</p>
+
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="p-6 bg-[var(--color-primary)] rounded-2xl border border-secondary/10 relative">
+                                            <span className="absolute top-4 right-4 text-[10px] uppercase tracking-widest opacity-30">Wikipedia</span>
+                                            <h4 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                                Amplitude (gain) condition
+                                            </h4>
+                                            <p className="text-sm opacity-80">Round-trip gain must exceed losses experienced in one cycle (including mirror, scattering, and material losses).</p>
+                                        </div>
+
+                                        <div className="p-6 bg-[var(--color-primary)] rounded-2xl border border-secondary/10 relative">
+                                            <span className="absolute top-4 right-4 text-[10px] uppercase tracking-widest opacity-30">neurophasia.com</span>
+                                            <h4 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-tertiary)]"></div>
+                                                Phase (resonance) condition
+                                            </h4>
+                                            <p className="text-sm opacity-80 mb-4">The total accumulated optical phase after a round trip must be an integer multiple of <MathText inline>{String.raw`$2\pi$`}</MathText>, leading to discrete resonant frequencies:</p>
+                                            <div className="bg-secondary/[0.03] p-3 rounded-lg border border-secondary/5">
+                                                <MathText block>{String.raw`$n \cdot 2L = m\lambda \implies f_m = \frac{mc}{2nL}$`}</MathText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="mt-6 text-sm italic">Only such frequencies can build up coherently in the cavity. These eigenvalues define the allowed wavelengths of the laser.</p>
+                                </div>
+
+                                <div className="pt-8 border-t border-secondary/10 mt-8">
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-secondary/40 mb-4 divider flex items-center gap-4">
+                                        References
+                                        <div className="h-px bg-secondary/10 flex-1"></div>
+                                    </h4>
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 text-[11px] opacity-60">
+                                        <li>A. E. Siegman, <em>Lasers</em>, University Science Books, 1986.</li>
+                                        <li>W. T. Silfvast, <em>Laser Fundamentals</em>, Cambridge University Press, 2004.</li>
+                                        <li>A. Yariv and P. Yeh, <em>Photonics: Optical Electronics in Modern Communications</em>, Oxford University Press.</li>
+                                        <li>Maxwell–Bloch formalism and cavity mode theory summaries, Wikipedia.</li>
+                                        <li>Neurophasia, <em>Laser Resonators and Cavity Modes</em> (educational notes).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </header>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">

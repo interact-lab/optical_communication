@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './layouts/Layout';
 
@@ -14,13 +14,11 @@ const Placeholder = ({ title }) => (
   </div>
 );
 
-// Lazy load pages eventually, for now direct imports or placeholders
+// Imports
 import Home from './pages/Home';
 import Intro from './pages/Lasers/Intro';
-// Optical Resonators
 import WhyStandingWaves from './pages/Lasers/Resonators/WhyStandingWaves';
 import BoundaryConditions from './pages/Lasers/Resonators/BoundaryConditions';
-import Modes from './pages/Lasers/Resonators/Modes';
 import SemiconductorCavities from './pages/Lasers/Resonators/SemiconductorCavities';
 // Gain & Loss
 import FrequencyGain from './pages/Lasers/GainLoss/FrequencyGain';
@@ -37,6 +35,9 @@ import MZM from './pages/Lasers/Modulation/MZM';
 import ThermalTuning from './pages/Lasers/Tunables/ThermalTuning';
 import VernierEffect from './pages/Lasers/Tunables/VernierEffect';
 import CMA_DMA from './pages/Lasers/Tunables/CMA_DMA';
+
+// Lazy loaded problematic page
+const Modes = lazy(() => import('./pages/Lasers/Resonators/Modes'));
 
 function App() {
   const [isDark, setIsDark] = useState(() => {
@@ -73,7 +74,11 @@ function App() {
               <Route index element={<Navigate to="why-standing-waves" replace />} />
               <Route path="why-standing-waves" element={<WhyStandingWaves />} />
               <Route path="boundary-conditions" element={<BoundaryConditions />} />
-              <Route path="modes" element={<Modes />} />
+              <Route path="modes" element={
+                <Suspense fallback={<div className="p-20 text-center animate-pulse">Loading Visualization...</div>}>
+                  <Modes />
+                </Suspense>
+              } />
               <Route path="semiconductor-cavities" element={<SemiconductorCavities />} />
             </Route>
 

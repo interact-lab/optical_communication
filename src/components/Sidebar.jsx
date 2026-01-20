@@ -140,8 +140,8 @@ const Sidebar = ({ toggleTheme, isDark }) => {
 
                                     <SidebarItem to="/lasers/resonators" label="Optical Resonators" collapsed={isCollapsed} icon={Layers}>
                                         <div className="space-y-1 mt-1">
-                                            <SidebarItem to="/lasers/resonators/why-standing-waves" label="Why Standing Waves?" collapsed={isCollapsed} />
                                             <SidebarItem to="/lasers/resonators/boundary-conditions" label="Boundary Conditions" collapsed={isCollapsed} />
+                                            <SidebarItem to="/lasers/resonators/why-standing-waves" label="Why Standing Waves?" collapsed={isCollapsed} />
                                             <SidebarItem to="/lasers/resonators/modes" label="Cavity Modes" collapsed={isCollapsed} />
                                         </div>
                                     </SidebarItem>
