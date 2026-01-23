@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MathText from '../../../components/MathText';
 import { Sliders, Zap, Play, Pause, RotateCcw, SkipForward, ChevronDown } from 'lucide-react';
+import PageNavigation from '../../../components/PageNavigation';
 
 const WhyStandingWaves = () => {
     // -------------------------------------------------------------------------
@@ -78,7 +79,7 @@ const WhyStandingWaves = () => {
 
             // Axis
             ctx.beginPath();
-            ctx.strokeStyle = '#ffffff20';
+            ctx.strokeStyle = isResonant ? '#38bdf840' : '#88888820';
             ctx.setLineDash([5, 5]);
             ctx.moveTo(leftMirrorX, centerY);
             ctx.lineTo(rightMirrorX, centerY);
@@ -86,9 +87,11 @@ const WhyStandingWaves = () => {
             ctx.setLineDash([]);
 
             // Mirrors Bodies
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = 'var(--color-secondary)';
+            ctx.globalAlpha = 0.6;
             ctx.fillRect(leftMirrorX - 4, centerY - 100, 8, 200);
             ctx.fillRect(rightMirrorX - 4, centerY - 100, 8, 200);
+            ctx.globalAlpha = 1.0;
 
             // -----------------------------------------------------------------
             // Compute Field
@@ -409,6 +412,13 @@ const WhyStandingWaves = () => {
                     </div>
                 </div>
             </div>
+
+            <PageNavigation
+                prevTo="/lasers/intro"
+                prevLabel="Introduction"
+                nextTo="/lasers/resonators/boundary-conditions"
+                nextLabel="Boundary Conditions"
+            />
         </div>
     );
 };

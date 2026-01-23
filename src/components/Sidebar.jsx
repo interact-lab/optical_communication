@@ -145,9 +145,20 @@ const Sidebar = ({ toggleTheme, isDark }) => {
                                             <SidebarItem to="/lasers/resonators/modes" label="Cavity Modes" collapsed={isCollapsed} />
                                         </div>
                                     </SidebarItem>
-                                    <SidebarItem to="/lasers/gain-loss" label="Gain & Line Broadening" collapsed={isCollapsed} icon={Waves} />
-                                    <SidebarItem to="/lasers/modulation" label="Laser Modulation" collapsed={isCollapsed} icon={Activity} />
-                                    <SidebarItem to="/lasers/tunable" label="Tunable Lasers" collapsed={isCollapsed} icon={Sliders} />
+                                    <SidebarItem to="/lasers/modulation" label="Laser Modulation" collapsed={isCollapsed} icon={Activity}>
+                                        <div className="space-y-1 mt-1">
+                                            <SidebarItem to="/lasers/modulation/direct" label="Direct Modulation" collapsed={isCollapsed} />
+                                            <SidebarItem to="/lasers/modulation/external" label="External Modulation" collapsed={isCollapsed} />
+                                            <SidebarItem to="/lasers/modulation/mzm" label="MZM" collapsed={isCollapsed} />
+                                        </div>
+                                    </SidebarItem>
+                                    <SidebarItem to="/lasers/tunable" label="Tunable Lasers" collapsed={isCollapsed} icon={Sliders}>
+                                        <div className="space-y-1 mt-1">
+                                            <SidebarItem to="/lasers/tunable/thermal" label="Temperature as a knob" collapsed={isCollapsed} />
+                                            <SidebarItem to="/lasers/tunable/vernier" label="Vernier Effect" collapsed={isCollapsed} />
+                                            <SidebarItem to="/lasers/tunable/cma-dma" label="CMA/DMA Tuning" collapsed={isCollapsed} />
+                                        </div>
+                                    </SidebarItem>
                                 </div>
                             </div>
 

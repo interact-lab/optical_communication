@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play } from 'lucide-react';
 import MathText from '../../components/MathText';
+import PageNavigation from '../../components/PageNavigation';
 
 const PhotonWave = ({ startX, endX, y, delay = 0, color = "var(--color-tertiary)", onComplete }) => {
     return (
@@ -131,7 +132,7 @@ const Intro = () => {
         <div className="min-h-screen bg-[var(--color-primary)] text-[var(--color-secondary)] font-sans transition-colors duration-300">
             {/* Hero / What are Lasers */}
             <section id="what-are-lasers" className="py-24 px-6 max-w-6xl mx-auto">
-                <h2 className="text-3xl font-semibold mb-6 font-serif text-[var(--color-secondary)] border-b-2 border-[var(--color-tertiary)]/20 pb-2 inline-block">What Are Lasers?</h2>
+                <h2 className="text-3xl font-semibold mb-6 font-serif text-[var(--color-secondary)] border-b-2 border-[var(--color-tertiary)]/20 pb-2 inline-block">Definition</h2>
                 <div className="grid md:grid-cols-2 gap-12">
                     <div className="space-y-4 text-[var(--color-secondary)]/80 text-lg leading-relaxed">
                         <p>
@@ -178,7 +179,7 @@ const Intro = () => {
 
             {/* Components of Light */}
             <section id="components" className="py-20 px-6 max-w-6xl mx-auto">
-                <h2 className="text-3xl font-semibold mb-10 font-serif text-[var(--color-secondary)] border-b border-secondary/10 pb-4">Components of Light</h2>
+                <h2 className="text-3xl font-semibold mb-10 font-serif text-[var(--color-secondary)] border-b border-secondary/10 pb-4">Light Components</h2>
 
                 {/* Amplitude */}
                 <div className="grid md:grid-cols-2 gap-8 mb-20 items-center">
@@ -258,7 +259,7 @@ const Intro = () => {
             {/* Energy Levels Section */}
             <section id="energy-levels" className="py-24 px-6 max-w-6xl mx-auto border-t border-secondary/10">
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-4">Energy Levels of a Laser</h1>
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-[var(--color-secondary)] mb-4">Energy Levels</h1>
                     <p className="text-xl text-[var(--color-tertiary)] font-light italic opacity-80">
                         How quantized energy levels and light–matter interaction give rise to laser action.
                     </p>
@@ -295,7 +296,12 @@ const Intro = () => {
                 </div>
             </section>
 
-            <footer className="py-12 text-center text-[var(--color-secondary)]/20 border-t border-secondary/10">
+            <PageNavigation
+                nextTo="/lasers/resonators"
+                nextLabel="Optical Resonators"
+            />
+
+            <footer className="py-24 text-center text-[var(--color-secondary)]/20">
                 <p className="text-sm italic">"The light is coherent because every photon knows what the other is doing."</p>
             </footer>
         </div>

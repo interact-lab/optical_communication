@@ -20,19 +20,13 @@ import Intro from './pages/Lasers/Intro';
 import WhyStandingWaves from './pages/Lasers/Resonators/WhyStandingWaves';
 import BoundaryConditions from './pages/Lasers/Resonators/BoundaryConditions';
 import SemiconductorCavities from './pages/Lasers/Resonators/SemiconductorCavities';
-// Gain & Loss
-import FrequencyGain from './pages/Lasers/GainLoss/FrequencyGain';
-import SourcesOfLoss from './pages/Lasers/GainLoss/SourcesOfLoss';
-import ReasonForLinewidth from './pages/Lasers/GainLoss/ReasonForLinewidth';
-import SchawlowTownes from './pages/Lasers/GainLoss/SchawlowTownes';
+
 // Modulation
 import DirectModulation from './pages/Lasers/Modulation/DirectModulation';
-import Chirp from './pages/Lasers/Modulation/Chirp';
 import ExternalModulation from './pages/Lasers/Modulation/ExternalModulation';
-import ModulationBW from './pages/Lasers/Modulation/ModulationBW';
 import MZM from './pages/Lasers/Modulation/MZM';
 // Tunable
-import ThermalTuning from './pages/Lasers/Tunables/ThermalTuning';
+import TemperatureTuning from './pages/Lasers/Tunables/TemperatureTuning';
 import VernierEffect from './pages/Lasers/Tunables/VernierEffect';
 import CMA_DMA from './pages/Lasers/Tunables/CMA_DMA';
 
@@ -82,29 +76,20 @@ function App() {
               <Route path="semiconductor-cavities" element={<SemiconductorCavities />} />
             </Route>
 
-            {/* Topic 2: Gain Loss */}
-            <Route path="gain-loss">
-              <Route index element={<Navigate to="frequency-gain" replace />} />
-              <Route path="frequency-gain" element={<FrequencyGain />} />
-              <Route path="sources-of-loss" element={<SourcesOfLoss />} />
-              <Route path="linewidth-reason" element={<ReasonForLinewidth />} />
-              <Route path="schawlow-townes" element={<SchawlowTownes />} />
-            </Route>
+
 
             {/* Topic 3: Modulation */}
             <Route path="modulation">
               <Route index element={<Navigate to="direct" replace />} />
               <Route path="direct" element={<DirectModulation />} />
-              <Route path="chirp" element={<Chirp />} />
               <Route path="external" element={<ExternalModulation />} />
-              <Route path="bandwidth" element={<ModulationBW />} />
               <Route path="mzm" element={<MZM />} />
             </Route>
 
             {/* Topic 4: Tunable */}
             <Route path="tunable">
               <Route index element={<Navigate to="thermal" replace />} />
-              <Route path="thermal" element={<ThermalTuning />} />
+              <Route path="thermal" element={<TemperatureTuning />} />
               <Route path="vernier" element={<VernierEffect />} />
               <Route path="cma-dma" element={<CMA_DMA />} />
             </Route>

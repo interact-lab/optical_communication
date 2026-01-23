@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, Eye, EyeOff, Play, Layers, ChevronDown } from 'lucide-react';
 import MathText from '../../../components/MathText';
+import PageNavigation from '../../../components/PageNavigation';
 
 // --- 3D Scene Components ---
 
@@ -185,9 +186,9 @@ const TETMViewer = () => {
     return (
         <div className="flex flex-col gap-10">
             {/* 3D Visual Area - Zoomed out view by default */}
-            <div className="relative w-full h-[650px] bg-[#020202] rounded-[3rem] overflow-hidden border border-white/10 shadow-4xl">
+            <div className="relative w-full h-[650px] bg-slate-950 rounded-[3rem] overflow-hidden border border-white/10 shadow-4xl">
                 <Canvas dpr={[1, 2]} camera={{ position: [0, 4, 18], fov: 35 }}>
-                    <color attach="background" args={['#020202']} />
+                    <color attach="background" args={['#020617']} />
                     <ambientLight intensity={0.5} />
                     <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
                     <pointLight position={[-10, -5, -10]} intensity={0.5} color="#88ccff" />
@@ -207,7 +208,6 @@ const TETMViewer = () => {
                     />
                 </Canvas>
 
-                {/* Mode Caption inside viewer */}
                 <div className="absolute top-10 left-10 pointer-events-none">
                     <div className="bg-black/60 backdrop-blur-xl px-8 py-4 rounded-2xl border border-white/5">
                         <h4 className={`text-lg font-serif font-black tracking-tight ${mode === 'TE' ? 'text-cyan-400' : 'text-orange-400'}`}>
@@ -220,27 +220,27 @@ const TETMViewer = () => {
             {/* Controls Bar Below Visuals */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Mode Selection */}
-                <div className="p-8 bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[2.5rem] shadow-xl">
-                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 mb-6 flex items-center gap-2">
+                <div className="p-8 bg-secondary/[0.03] backdrop-blur-3xl border border-secondary/10 rounded-[2.5rem] shadow-xl">
+                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-secondary/30 mb-6 flex items-center gap-2">
                         <Play size={10} className="text-blue-500" /> Interaction Mode
                     </h3>
                     <div className="flex gap-4">
                         <button
                             onClick={() => setMode('TE')}
-                            className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl border transition-all duration-500 ${mode === 'TE' ? 'bg-cyan-600/10 border-cyan-500/50 shadow-[0_0_15px_rgba(34,211,238,0.1)]' : 'bg-white/5 border-transparent hover:bg-white/10'}`}
+                            className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl border transition-all duration-500 ${mode === 'TE' ? 'bg-cyan-600/10 border-cyan-500/50 shadow-[0_0_15px_rgba(34,211,238,0.1)]' : 'bg-secondary/5 border-transparent hover:bg-secondary/10'}`}
                         >
-                            <span className={`text-xs font-black tracking-[0.1em] uppercase ${mode === 'TE' ? 'text-white' : 'text-white/30'}`}>TE 01</span>
-                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${mode === 'TE' ? 'border-cyan-400' : 'border-white/10'}`}>
+                            <span className={`text-xs font-black tracking-[0.1em] uppercase ${mode === 'TE' ? 'text-secondary' : 'text-secondary/30'}`}>TE 01</span>
+                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${mode === 'TE' ? 'border-cyan-400' : 'border-secondary/10'}`}>
                                 {mode === 'TE' && <div className="w-2 h-2 rounded-full bg-cyan-400" />}
                             </div>
                         </button>
 
                         <button
                             onClick={() => setMode('TM')}
-                            className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl border transition-all duration-500 ${mode === 'TM' ? 'bg-orange-600/10 border-orange-500/50 shadow-[0_0_15px_rgba(251,146,60,0.1)]' : 'bg-white/5 border-transparent hover:bg-white/10'}`}
+                            className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl border transition-all duration-500 ${mode === 'TM' ? 'bg-orange-600/10 border-orange-500/50 shadow-[0_0_15px_rgba(251,146,60,0.1)]' : 'bg-secondary/5 border-transparent hover:bg-secondary/10'}`}
                         >
-                            <span className={`text-xs font-black tracking-[0.1em] uppercase ${mode === 'TM' ? 'text-white' : 'text-white/30'}`}>TM 01</span>
-                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${mode === 'TM' ? 'border-orange-400' : 'border-white/10'}`}>
+                            <span className={`text-xs font-black tracking-[0.1em] uppercase ${mode === 'TM' ? 'text-secondary' : 'text-secondary/30'}`}>TM 01</span>
+                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${mode === 'TM' ? 'border-orange-400' : 'border-secondary/10'}`}>
                                 {mode === 'TM' && <div className="w-2 h-2 rounded-full bg-orange-400" />}
                             </div>
                         </button>
@@ -248,37 +248,37 @@ const TETMViewer = () => {
                 </div>
 
                 {/* Structure Controls */}
-                <div className="p-8 bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[2.5rem] shadow-xl">
-                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 mb-6">Structural View</h3>
+                <div className="p-8 bg-secondary/[0.03] backdrop-blur-3xl border border-secondary/10 rounded-[2.5rem] shadow-xl">
+                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-secondary/30 mb-6">Structural View</h3>
                     <button
                         onClick={() => setShowWireframe(!showWireframe)}
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${showWireframe ? 'bg-blue-600/10 border-blue-500/50' : 'bg-white/5 border-transparent hover:bg-white/10'}`}
+                        className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${showWireframe ? 'bg-blue-600/10 border-blue-500/50' : 'bg-secondary/5 border-transparent hover:bg-secondary/10'}`}
                     >
                         <div className="flex items-center gap-3">
-                            <Layers size={16} className={showWireframe ? 'text-blue-400' : 'text-white/20'} />
-                            <span className={`text-[10px] font-black uppercase tracking-widest ${showWireframe ? 'text-white' : 'text-white/20'}`}>Core Wireframe</span>
+                            <Layers size={16} className={showWireframe ? 'text-blue-400' : 'text-secondary/20'} />
+                            <span className={`text-[10px] font-black uppercase tracking-widest ${showWireframe ? 'text-secondary' : 'text-secondary/20'}`}>Core Wireframe</span>
                         </div>
-                        <div className={`w-12 h-6 rounded-full transition-all relative ${showWireframe ? 'bg-blue-500/40' : 'bg-white/5'}`}>
-                            <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${showWireframe ? 'right-1 bg-blue-400' : 'left-1 bg-white/20'}`} />
+                        <div className={`w-12 h-6 rounded-full transition-all relative ${showWireframe ? 'bg-blue-500/40' : 'bg-secondary/5'}`}>
+                            <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${showWireframe ? 'right-1 bg-blue-400' : 'left-1 bg-secondary/20'}`} />
                         </div>
                     </button>
                 </div>
 
                 {/* Field Visibility */}
-                <div className="p-8 bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[2.5rem] shadow-xl">
-                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 mb-6">Field Isolation</h3>
+                <div className="p-8 bg-secondary/[0.03] backdrop-blur-3xl border border-secondary/10 rounded-[2.5rem] shadow-xl">
+                    <h3 className="text-[10px] uppercase font-black tracking-[0.4em] text-secondary/30 mb-6">Field Isolation</h3>
                     <div className="flex gap-8">
                         <div className="flex-1 flex flex-col gap-2">
                             <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowE(!showE)}>
-                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${showE ? 'text-cyan-400' : 'text-white/20'}`}>Electric</span>
-                                <div className={`w-10 h-5 rounded-full relative transition-all ${showE ? 'bg-cyan-500/30' : 'bg-white/5'}`}>
-                                    <div className={`absolute top-1 w-3 h-3 rounded-full transition-all ${showE ? 'right-1 bg-cyan-400' : 'left-1 bg-white/20'}`} />
+                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${showE ? 'text-cyan-400' : 'text-secondary/20'}`}>Electric</span>
+                                <div className={`w-10 h-5 rounded-full relative transition-all ${showE ? 'bg-cyan-500/30' : 'bg-secondary/5'}`}>
+                                    <div className={`absolute top-1 w-3 h-3 rounded-full transition-all ${showE ? 'right-1 bg-cyan-400' : 'left-1 bg-secondary/20'}`} />
                                 </div>
                             </div>
                             <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowH(!showH)}>
-                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${showH ? 'text-orange-400' : 'text-white/20'}`}>Magnetic</span>
-                                <div className={`w-10 h-5 rounded-full relative transition-all ${showH ? 'bg-orange-500/30' : 'bg-white/5'}`}>
-                                    <div className={`absolute top-1 w-3 h-3 rounded-full transition-all ${showH ? 'right-1 bg-orange-400' : 'left-1 bg-white/20'}`} />
+                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${showH ? 'text-orange-400' : 'text-secondary/20'}`}>Magnetic</span>
+                                <div className={`w-10 h-5 rounded-full relative transition-all ${showH ? 'bg-orange-500/30' : 'bg-secondary/5'}`}>
+                                    <div className={`absolute top-1 w-3 h-3 rounded-full transition-all ${showH ? 'right-1 bg-orange-400' : 'left-1 bg-secondary/20'}`} />
                                 </div>
                             </div>
                         </div>
@@ -295,10 +295,10 @@ const Modes = () => {
     const [showTheory, setShowTheory] = useState(false);
 
     return (
-        <div className="max-w-7xl mx-auto pb-40 text-white px-4">
+        <div className="max-w-7xl mx-auto pb-40 text-secondary px-4">
             <header className="mb-20">
                 <div className="flex items-center gap-4 mb-8">
-                    <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                    <div className="h-px flex-1 bg-gradient-to-r from-secondary/10 to-transparent" />
                 </div>
                 <div className="flex items-center gap-6 mb-10">
                     <h1 className="text-5xl lg:text-7xl font-serif font-black tracking-[-0.03em] leading-[0.9]">
@@ -324,10 +324,10 @@ const Modes = () => {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden mb-16"
                         >
-                            <div className="p-12 bg-white/[0.03] rounded-[3rem] border border-white/10 space-y-12 text-white/60 leading-relaxed font-light">
+                            <div className="p-12 bg-secondary/[0.03] rounded-[3rem] border border-secondary/10 space-y-12 text-secondary/60 leading-relaxed font-light">
                                 {/* Section 1 */}
                                 <section className="space-y-6">
-                                    <h2 className="text-3xl font-serif font-bold text-white flex items-center gap-4">
+                                    <h2 className="text-3xl font-serif font-bold text-secondary flex items-center gap-4">
                                         <span className="text-blue-500/50">01.</span> What “modes” mean in this context
                                     </h2>
                                     <p className="text-xl">
@@ -360,7 +360,7 @@ const Modes = () => {
 
                                 {/* Section 2 */}
                                 <section className="space-y-8 pt-12 border-t border-white/5">
-                                    <h2 className="text-3xl font-serif font-bold text-white flex items-center gap-4">
+                                    <h2 className="text-3xl font-serif font-bold text-secondary flex items-center gap-4">
                                         <span className="text-orange-500/50">02.</span> Definition of TE and TM modes
                                     </h2>
                                     <p className="text-xl">The definitions are <strong>always with respect to a propagation direction</strong>. Assume propagation along the z-axis.</p>
@@ -386,7 +386,7 @@ const Modes = () => {
 
                                 {/* Section 3 */}
                                 <section className="space-y-8 pt-12 border-t border-white/5">
-                                    <h2 className="text-3xl font-serif font-bold text-white flex items-center gap-4">
+                                    <h2 className="text-3xl font-serif font-bold text-secondary flex items-center gap-4">
                                         <span className="text-purple-500/50">03.</span> Why TE and TM modes exist (Deep Physical Reason)
                                     </h2>
                                     <p className="text-xl">The origin lies in the <strong>boundary conditions</strong> at dielectric or metallic interfaces.</p>
@@ -408,7 +408,7 @@ const Modes = () => {
 
                                 {/* Section 4 */}
                                 <section className="space-y-8 pt-12 border-t border-white/5">
-                                    <h2 className="text-3xl font-serif font-bold text-white flex items-center gap-4">
+                                    <h2 className="text-3xl font-serif font-bold text-secondary flex items-center gap-4">
                                         <span className="text-green-500/50">04.</span> TE and TM in Common Laser Structures
                                     </h2>
 
@@ -471,7 +471,7 @@ const Modes = () => {
 
                                 {/* Section 5 */}
                                 <section className="space-y-8 pt-12 border-t border-white/5">
-                                    <h2 className="text-3xl font-serif font-bold text-white flex items-center gap-4">
+                                    <h2 className="text-3xl font-serif font-bold text-secondary flex items-center gap-4">
                                         <span className="text-pink-500/50">05.</span> Field Structure Comparison (Mental Picture)
                                     </h2>
                                     <div className="grid md:grid-cols-2 gap-10">
@@ -531,7 +531,7 @@ const Modes = () => {
                         <div className="w-24 h-24 rounded-[2rem] bg-cyan-500/10 flex items-center justify-center text-cyan-400 border border-cyan-500/20 shadow-[0_0_30px_rgba(34,211,238,0.1)] transition-all group-hover:shadow-[0_0_50px_rgba(34,211,238,0.2)]">
                             <span className="text-4xl font-black italic">TE</span>
                         </div>
-                        <h2 className="text-5xl font-serif font-bold text-white tracking-tighter">Transverse Electric</h2>
+                        <h2 className="text-5xl font-serif font-bold text-secondary tracking-tighter">Transverse Electric</h2>
                     </div>
                     <div className="space-y-8 text-xl text-white/40 font-light leading-relaxed">
                         <p>
@@ -549,7 +549,7 @@ const Modes = () => {
                         <div className="w-24 h-24 rounded-[2rem] bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20 shadow-[0_0_30px_rgba(249,115,22,0.1)] transition-all group-hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]">
                             <span className="text-4xl font-black italic">TM</span>
                         </div>
-                        <h2 className="text-5xl font-serif font-bold text-white tracking-tighter">Transverse Magnetic</h2>
+                        <h2 className="text-5xl font-serif font-bold text-secondary tracking-tighter">Transverse Magnetic</h2>
                     </div>
                     <div className="space-y-8 text-xl text-white/40 font-light leading-relaxed">
                         <p>
@@ -576,6 +576,13 @@ const Modes = () => {
                     </div>
                 </div>
             </div>
+
+            <PageNavigation
+                prevTo="/lasers/resonators/boundary-conditions"
+                prevLabel="Boundary Conditions"
+                nextTo="/lasers/resonators/semiconductor-cavities"
+                nextLabel="Semiconductor Cavities"
+            />
         </div>
     );
 };

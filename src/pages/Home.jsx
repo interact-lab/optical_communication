@@ -40,9 +40,8 @@ const Home = () => {
                     <div className="grid grid-cols-2 gap-2 border-t border-secondary/10 pt-4">
                         <Link to="/lasers/intro" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Intro</Link>
                         <Link to="/lasers/resonators" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Resonators</Link>
-                        <Link to="/lasers/gain-loss" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Gain & Loss</Link>
                         <Link to="/lasers/modulation" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Modulation</Link>
-                        <Link to="/lasers/tunable" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Tunables</Link>
+                        <Link to="/lasers/tunable" className="text-xs opacity-50 hover:text-[var(--color-tertiary)] transition-colors font-medium hover:translate-x-1 duration-200">• Tuning</Link>
                     </div>
                 </div>
 
